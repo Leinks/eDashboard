@@ -19,11 +19,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route index element={<Login />} />
         <Route path="/registro" element={<Register />} />
         <Route path="/olvide-password" element={<ForgetPassword />} />
         <Route path="/" element={<LayoutAdmin />}>
-          <Route index element={<Home />} />
+          <Route path="dashboard" element={<Home />} />
           <Route path="perfil" element={<Profile />} />
           <Route path="chat" element={<Chat />} />
           <Route path="tickets" element={<Tickets />} />
