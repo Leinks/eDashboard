@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AuthUser from "./AuthUser";
 import { Link } from "react-router-dom";
 // Icons
 import {
@@ -9,12 +10,15 @@ import {
   RiEyeOffLine,
 } from "react-icons/ri";
 const Login = () => {
+  const {http} = AuthUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const submitForm = () => {
-    console.log(email + ' ' + password);
+    http.post('/login',{email:email, password:password}).then((res)=>{
+      console.log(res.data);
+      )}
   }
 
   return (
