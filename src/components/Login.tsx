@@ -17,7 +17,7 @@ const Login = () => {
 
   const submitForm = () => {
     http.post('/login',{email:email, password:password}).then((res)=>{
-      console.log(res.data);
+      
       )}
   }
 
