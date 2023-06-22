@@ -1,15 +1,15 @@
 import { ApiManager } from './ApiManager';
 
 
-export const RegisterUser = async (data: {name:string,email:string,password:string,passwordConfirmation:string}) => {
+export const RegisterUser = async (data: {name:string,email:string,password:string}) => {
 
     const formdata = new FormData();
     formdata.append('name', data.name)
     formdata.append('email', data.email)
     formdata.append('password', data.password)
-    formdata.append('passwordConfirmation', data.passwordConfirmation)
+    //formdata.append('passwordConfirmation', data.passwordConfirmation)
     const BodyContent = formdata
-
+    //console.log(data)
   
     try {
         const result = await ApiManager( 'register',
@@ -20,7 +20,7 @@ export const RegisterUser = async (data: {name:string,email:string,password:stri
             Accept: '*',        
                 
         },
-            data: BodyContent,
+            data: data,
         });
         if(result){
 

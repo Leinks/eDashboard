@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { UpperCase } from "../../components/UpperCase";
-import {RegisterUser} from "../../components/RegisterUser";
+import { RegisterUser } from "../../components/RegisterUser";
 // Icons
 import {
   RiMailLine,
@@ -27,11 +27,11 @@ const Register = () => {
           name:FullName,
           email: email.toLocaleLowerCase(),
           password: password,
-          passwordConfirmation: passwordConfirmation
+          //passwordConfirmation: passwordConfirmation
         })
           .then(async response => {
             //console.log(response)
-            //  console.log(response.data.error)
+            //console.log(response.data.error)
             switch(response) {
               case 0:
   
