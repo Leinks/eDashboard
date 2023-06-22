@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import {AuthUser} from "../../components/AuthUser";
+import { ApiManager } from "../../components/ApiManager";
 import { Link } from "react-router-dom";
+import { CheckPassword } from "../../components/CheckPassword"
 // Icons
 import {
   RiUser3Line,
@@ -16,33 +18,21 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
 
-  const checkPasswordValidity = (value: string) => {
-    const isNonWhiteSpace = /^\S*$/;
-    if (!isNonWhiteSpace.test(value)) {
-      return 'La Contraseña no puede tener espacios en Blanco.';
-    }
-    const isValidLength = /^.{5,32}$/;
-    if (!isValidLength.test(value)) {
-      return 'La Contraseña solo puede tener de 8 a 32 caracteres.';
-    }
-  
-    return null;
-  };
   const submitForm = () => {
 
     // http.post('login',{email:email,password:password}).then((res)=>{
     //   console.log(res.data)
-    // })
-    const checkPassowrd = checkPasswordValidity(password);
+    // }) 
+   
     try{
 
-      if (!checkPassowrd) {
+      if (!CheckPassword(password)) {
         AuthUser({
           email: email.toLocaleLowerCase(),
           password: password,
         })
           .then(async response => {
-            console.log(response)
+            console.log(response.data)
             //  console.log(response.data.error)
             switch(response) {
               case 0:
@@ -64,10 +54,22 @@ const Login = () => {
       }catch (e: any) {
           //console.info(e)
             //console.log(e.response)
-          return alert(checkPassowrd!);
+          return alert(CheckPassword(password)!);
         }
     }
   
+  // const submitForm = async (event) => {
+  //   console.log(email,password)
+  //   event.preventDefault();
+  //   try {
+  //   await ApiManager.post('login',{email,password})
+  //   } catch (error) {
+      
+  //   }
+
+  // }
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
