@@ -6,13 +6,16 @@ BEGIN;
 CREATE TABLE IF NOT EXISTS administrador.users
 (
     id bigint NOT NULL,
-    username character varying(60) NOT NULL,
-    password character varying(255) NOT NULL,
-    token character varying(255) NOT NULL,
-    social_code bit varying(60) NOT NULL,
+    email character varying(60) NOT NULL,
+    name character varying(60) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    email_verified_at timestamp with time zone,
+    remember_token character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    social_code character varying(60) NOT NULL,
     create_at timestamp with time zone NOT NULL,
     update_at timestamp with time zone,
-    PRIMARY KEY (id)
+    CONSTRAINT users_pkey PRIMARY KEY (id),
+    CONSTRAINT email UNIQUE (email)
 );
 
 COMMENT ON TABLE administrador.users
@@ -22,106 +25,59 @@ CREATE TABLE IF NOT EXISTS administrador.customers
 (
     id bigint NOT NULL,
     user_id bigint NOT NULL,
-    email character(60) NOT NULL,
-    billing_address character(255) NOT NULL,
-    rif_n character(20) NOT NULL,
-    phone_code character(8) NOT NULL,
+    email character(60) COLLATE pg_catalog."default" NOT NULL,
+    billing_address character(255) COLLATE pg_catalog."default" NOT NULL,
+    rif_n character(20) COLLATE pg_catalog."default" NOT NULL,
+    phone_code character(8) COLLATE pg_catalog."default" NOT NULL,
     phone integer NOT NULL,
-    country character(255) NOT NULL,
-    address character(255) NOT NULL,
+    country character(255) COLLATE pg_catalog."default" NOT NULL,
+    address character(255) COLLATE pg_catalog."default" NOT NULL,
     create_at timestamp with time zone NOT NULL,
     update_at timestamp with time zone,
-    PRIMARY KEY (id)
+    CONSTRAINT customers_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS administrador.consumer
-(
-    id bigint NOT NULL,
-    user_id bigint NOT NULL,
-    full_name character(60) NOT NULL,
-    email character(60) NOT NULL,
-    billing_address character(255),
-    document character(60) NOT NULL,
-    phone_code character(8) NOT NULL,
-    phone integer NOT NULL,
-    birht_date date NOT NULL,
-    create_at timestamp with time zone NOT NULL,
-    update_at timestamp with time zone,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS administrador.permissions
-(
-    id bigint NOT NULL,
-    role_id bigint NOT NULL,
-    permissions_name character(255) NOT NULL,
-    create_at timestamp with time zone NOT NULL,
-    update_at timestamp with time zone,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS administrador.company
+CREATE TABLE IF NOT EXISTS administrador.companys
 (
     id bigint NOT NULL,
     customer_id bigint NOT NULL,
-    rif_j character(20) NOT NULL,
-    company_name character(40) NOT NULL,
-    email character(60),
-    phone_code character(8) NOT NULL,
+    rif_j character(20) COLLATE pg_catalog."default" NOT NULL,
+    company_name character(40) COLLATE pg_catalog."default" NOT NULL,
+    email character(60) COLLATE pg_catalog."default",
+    phone_code character(8) COLLATE pg_catalog."default" NOT NULL,
     phone integer NOT NULL,
     create_at timestamp with time zone NOT NULL,
     update_at timestamp with time zone,
     CONSTRAINT id PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS administrador.local
+CREATE TABLE IF NOT EXISTS administrador.locals
 (
     id bigint NOT NULL,
     company_id bigint NOT NULL,
-    local_name character(255) NOT NULL,
-    name_location character(255) NOT NULL,
-    phone_code character(8) NOT NULL,
+    local_name character(255) COLLATE pg_catalog."default" NOT NULL,
+    name_location character(255) COLLATE pg_catalog."default" NOT NULL,
+    phone_code character(8) COLLATE pg_catalog."default" NOT NULL,
     phone integer NOT NULL,
     create_at timestamp with time zone NOT NULL,
     update_at timestamp with time zone,
-    PRIMARY KEY (company_id)
-);
-
-CREATE TABLE IF NOT EXISTS administrador.categories
-(
-    id bigint NOT NULL,
-    name character(20) NOT NULL,
-    description character(255) NOT NULL,
-    thumbnail character(255),
-    create_at timestamp with time zone NOT NULL,
-    update_at timestamp with time zone,
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS administrador.products
+CREATE TABLE IF NOT EXISTS administrador.consumers
 (
     id bigint NOT NULL,
-    sku character(60),
-    name character(120) NOT NULL,
-    price integer NOT NULL,
-    weight integer,
-    description character(255) NOT NULL,
-    thumbnail character(120) NOT NULL,
-    image character(120),
-    category character(120) NOT NULL,
-    stock character,
+    user_id bigint NOT NULL,
+    full_name character(60) COLLATE pg_catalog."default" NOT NULL,
+    email character(60) COLLATE pg_catalog."default" NOT NULL,
+    billing_address character(255) COLLATE pg_catalog."default",
+    document character(60) COLLATE pg_catalog."default" NOT NULL,
+    phone_code character(8) COLLATE pg_catalog."default" NOT NULL,
+    phone integer NOT NULL,
+    birht_date date NOT NULL,
     create_at timestamp with time zone NOT NULL,
     update_at timestamp with time zone,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS administrador.options
-(
-    id bigint NOT NULL,
-    option_name character NOT NULL,
-    create_at timestamp with time zone NOT NULL,
-    update_at timestamp with time zone,
-    PRIMARY KEY (id)
+    CONSTRAINT consumer_pkey PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS administrador.orders
@@ -129,24 +85,42 @@ CREATE TABLE IF NOT EXISTS administrador.orders
     id bigint NOT NULL,
     consumer_id bigint NOT NULL,
     ammount integer NOT NULL,
-    shipping_address character(255),
-    order_address character(255),
-    order_email character(60),
+    shipping_address character(255) COLLATE pg_catalog."default",
+    order_address character(255) COLLATE pg_catalog."default",
+    order_email character(60) COLLATE pg_catalog."default",
     order_date date NOT NULL,
     order_status integer NOT NULL,
     create_at timestamp with time zone NOT NULL,
     update_at timestamp with time zone,
-    PRIMARY KEY (id)
+    CONSTRAINT orders_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS administrador.product_categories
+CREATE TABLE IF NOT EXISTS administrador.orders_details
 (
     id bigint NOT NULL,
-    option_id bigint NOT NULL,
-    category_id bigint NOT NULL,
+    order_id bigint NOT NULL,
+    product_id bigint NOT NULL,
+    price integer NOT NULL,
+    sku character(1) COLLATE pg_catalog."default",
+    quantity integer,
+    CONSTRAINT orders_details_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS administrador.products
+(
+    id bigint NOT NULL,
+    sku character(60) COLLATE pg_catalog."default",
+    name character(120) COLLATE pg_catalog."default" NOT NULL,
+    price integer NOT NULL,
+    weight integer,
+    description character(255) COLLATE pg_catalog."default" NOT NULL,
+    thumbnail character(120) COLLATE pg_catalog."default" NOT NULL,
+    image character(120) COLLATE pg_catalog."default",
+    category character(120) COLLATE pg_catalog."default" NOT NULL,
+    stock character(1) COLLATE pg_catalog."default",
     create_at timestamp with time zone NOT NULL,
     update_at timestamp with time zone,
-    PRIMARY KEY (id)
+    CONSTRAINT products_pkey PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS administrador.product_options
@@ -156,37 +130,66 @@ CREATE TABLE IF NOT EXISTS administrador.product_options
     product_id bigint NOT NULL,
     create_at timestamp with time zone NOT NULL,
     update_at timestamp with time zone,
-    PRIMARY KEY (id)
+    CONSTRAINT product_options_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS administrador.orders_details
+CREATE TABLE IF NOT EXISTS administrador.options
 (
     id bigint NOT NULL,
-    order_id bigint NOT NULL,
-    product_id bigint NOT NULL,
-    price integer NOT NULL,
-    sku character,
-    quantity integer,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS administrador.roles
-(
-    id bigint NOT NULL,
-    role_name character(255) NOT NULL,
+    option_name character(1) COLLATE pg_catalog."default" NOT NULL,
     create_at timestamp with time zone NOT NULL,
     update_at timestamp with time zone,
-    PRIMARY KEY (id)
+    CONSTRAINT options_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS administrador.role_user
+CREATE TABLE IF NOT EXISTS administrador.product_categories
+(
+    id bigint NOT NULL,
+    option_id bigint NOT NULL,
+    category_id bigint NOT NULL,
+    create_at timestamp with time zone NOT NULL,
+    update_at timestamp with time zone,
+    CONSTRAINT product_categories_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS administrador.categories
+(
+    id bigint NOT NULL,
+    name character(20) COLLATE pg_catalog."default" NOT NULL,
+    description character(255) COLLATE pg_catalog."default" NOT NULL,
+    thumbnail character(255) COLLATE pg_catalog."default",
+    create_at timestamp with time zone NOT NULL,
+    update_at timestamp with time zone,
+    CONSTRAINT categories_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS administrador.role_users
 (
     id bigint NOT NULL,
     user_id bigint NOT NULL,
     role_id bigint NOT NULL,
     create_at timestamp with time zone NOT NULL,
     update_at timestamp with time zone,
-    PRIMARY KEY (id)
+    CONSTRAINT role_user_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS administrador.roles
+(
+    id bigint NOT NULL,
+    role_name character(255) COLLATE pg_catalog."default" NOT NULL,
+    create_at timestamp with time zone NOT NULL,
+    update_at timestamp with time zone,
+    CONSTRAINT roles_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS administrador.permissions
+(
+    id bigint NOT NULL,
+    role_id bigint NOT NULL,
+    permissions_name character(255) COLLATE pg_catalog."default" NOT NULL,
+    create_at timestamp with time zone NOT NULL,
+    update_at timestamp with time zone,
+    CONSTRAINT permissions_pkey PRIMARY KEY (id)
 );
 
 ALTER TABLE IF EXISTS administrador.customers
@@ -197,23 +200,7 @@ ALTER TABLE IF EXISTS administrador.customers
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS administrador.consumer
-    ADD CONSTRAINT user_id FOREIGN KEY (user_id)
-    REFERENCES administrador.users (id) MATCH SIMPLE
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS administrador.permissions
-    ADD FOREIGN KEY (role_id)
-    REFERENCES administrador.roles (id) MATCH SIMPLE
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS administrador.company
+ALTER TABLE IF EXISTS administrador.companys
     ADD CONSTRAINT customer_id FOREIGN KEY (customer_id)
     REFERENCES administrador.customers (id) MATCH SIMPLE
     ON UPDATE CASCADE
@@ -221,9 +208,9 @@ ALTER TABLE IF EXISTS administrador.company
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS administrador.local
-    ADD CONSTRAINT company_id FOREIGN KEY (company_id)
-    REFERENCES administrador.company (id) MATCH SIMPLE
+ALTER TABLE IF EXISTS administrador.consumers
+    ADD CONSTRAINT user_id FOREIGN KEY (user_id)
+    REFERENCES administrador.users (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE
     NOT VALID;
@@ -231,39 +218,7 @@ ALTER TABLE IF EXISTS administrador.local
 
 ALTER TABLE IF EXISTS administrador.orders
     ADD CONSTRAINT consumer_id FOREIGN KEY (consumer_id)
-    REFERENCES administrador.consumer (id) MATCH SIMPLE
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS administrador.product_categories
-    ADD CONSTRAINT option_id FOREIGN KEY (option_id)
-    REFERENCES administrador.options (id) MATCH SIMPLE
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS administrador.product_categories
-    ADD CONSTRAINT category_id FOREIGN KEY (category_id)
-    REFERENCES administrador.categories (id) MATCH SIMPLE
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS administrador.product_options
-    ADD CONSTRAINT option_id FOREIGN KEY (option_id)
-    REFERENCES administrador.options (id) MATCH SIMPLE
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS administrador.product_options
-    ADD CONSTRAINT product_id FOREIGN KEY (product_id)
-    REFERENCES administrador.products (id) MATCH SIMPLE
+    REFERENCES administrador.consumers (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE
     NOT VALID;
@@ -285,7 +240,47 @@ ALTER TABLE IF EXISTS administrador.orders_details
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS administrador.role_user
+ALTER TABLE IF EXISTS administrador.product_options
+    ADD CONSTRAINT option_id FOREIGN KEY (option_id)
+    REFERENCES administrador.options (id) MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS administrador.product_options
+    ADD CONSTRAINT product_id FOREIGN KEY (product_id)
+    REFERENCES administrador.products (id) MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS administrador.product_categories
+    ADD CONSTRAINT category_id FOREIGN KEY (category_id)
+    REFERENCES administrador.categories (id) MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS administrador.product_categories
+    ADD CONSTRAINT option_id FOREIGN KEY (option_id)
+    REFERENCES administrador.options (id) MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS administrador.role_users
+    ADD CONSTRAINT role_id FOREIGN KEY (role_id)
+    REFERENCES administrador.roles (id) MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS administrador.role_users
     ADD CONSTRAINT user_id FOREIGN KEY (user_id)
     REFERENCES administrador.users (id) MATCH SIMPLE
     ON UPDATE CASCADE
@@ -293,8 +288,8 @@ ALTER TABLE IF EXISTS administrador.role_user
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS administrador.role_user
-    ADD CONSTRAINT role_id FOREIGN KEY (role_id)
+ALTER TABLE IF EXISTS administrador.permissions
+    ADD CONSTRAINT permissions_role_id_fkey FOREIGN KEY (role_id)
     REFERENCES administrador.roles (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE

@@ -16,9 +16,9 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const submitForm = () => {
-    http.post('/login',{email:email, password:password}).then((res)=>{
-      
-      )}
+    http.post('login',{email:email,password:password}).then((res)=>{
+      console.log(res.data)
+    })
   }
 
   return (
@@ -71,8 +71,7 @@ const Login = () => {
               // type="submit"
               type="button"
               className="bg-primary text-black uppercase font-bold text-sm w-full py-3 px-4 rounded-lg"
-              onClick={submitForm}
-            >
+              onClick={submitForm}>
               Ingresar
             </button>
           </div>
