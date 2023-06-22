@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AuthUser from "./AuthUser";
+import {AuthUser} from "./AuthUser";
 import { Link } from "react-router-dom";
 // Icons
 import {
@@ -10,16 +10,64 @@ import {
   RiEyeOffLine,
 } from "react-icons/ri";
 const Login = () => {
-  const {http} = AuthUser();
+  // const {http} = AuthUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+
+  const checkPasswordValidity = (value: string) => {
+    const isNonWhiteSpace = /^\S*$/;
+    if (!isNonWhiteSpace.test(value)) {
+      return 'La Contraseña no puede tener espacios en Blanco.';
+    }
+    const isValidLength = /^.{5,32}$/;
+    if (!isValidLength.test(value)) {
+      return 'La Contraseña solo puede tener de 8 a 32 caracteres.';
+    }
+  
+    return null;
+  };
   const submitForm = () => {
-    http.post('login',{email:email,password:password}).then((res)=>{
-      console.log(res.data)
-    })
-  }
+
+    // http.post('login',{email:email,password:password}).then((res)=>{
+    //   console.log(res.data)
+    // })
+    const checkPassowrd = checkPasswordValidity(password);
+    try{
+
+      if (!checkPassowrd) {
+        AuthUser({
+          email: email.toLocaleLowerCase(),
+          password: password,
+        })
+          .then(async response => {
+            console.log(response)
+            //  console.log(response.data.error)
+            switch(response) {
+              case 0:
+  
+               //await  console.log(response)
+                break;
+              case 1:
+               return alert('Contraseña Incorrecta');
+              
+             break;
+              case 2:
+
+                return alert('El Usuario No Existe');
+                
+              break;
+              }
+          })
+        }
+      }catch (e: any) {
+          //console.info(e)
+            //console.log(e.response)
+          return alert(checkPassowrd!);
+        }
+    }
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
