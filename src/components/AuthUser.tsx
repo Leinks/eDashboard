@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { ApiManager } from './ApiManager';
 
 
@@ -26,11 +28,23 @@ import { ApiManager } from './ApiManager';
 
 
 
-export const AuthUser = async (data: any) => {
+export const AuthUser = async (data: {email:string,password:string}) => {
+    // const [token, setToken] = useState();
+    // const [user, setUSer] = useState();
     const formdata = new FormData();
+    const BodyContent = formdata
+    // const navigate = useNavigate();
     formdata.append('email', data.email)
     formdata.append('password', data.password)
-    const BodyContent = formdata
+
+    // const saveToken = (user,token) =>{
+    //   sessionStorage.setItem('token', JSON.stringify(token))
+    //   sessionStorage.setItem('user', JSON.stringify(user))
+
+    //   setToken(token);
+    //   setUSer(user);
+    //   //
+    // }
     //console.log(BodyContent)
     //console.log(data)
   
@@ -47,12 +61,19 @@ export const AuthUser = async (data: any) => {
         },
             data: BodyContent,
         });
-        //console.log(result)
-        return result;
+        if(result.data.access_token){
+          // sessionStorage.setItem('token',result.data.access_token)
+          // sessionStorage.setItem('user', result.data.user)
+          // setToken(result.data.access_token);
+          // setUSer(result.data.user);
+          console.log(result.data.user)
+        
+          return 0;
+        }
     } catch (e: any) {
-        console.info(e)
-          //console.log(e.response)
-        return e.response;
+          //console.info(e)
+          console.log(e.response.data.error)
+        return 1;
       }
     };
 

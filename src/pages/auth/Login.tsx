@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {AuthUser} from "../../components/AuthUser";
-import { ApiManager } from "../../components/ApiManager";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { CheckPassword } from "../../components/CheckPassword"
 // Icons
 import {
@@ -12,18 +12,17 @@ import {
   RiEyeOffLine,
 } from "react-icons/ri";
 const Login = () => {
-  // const {http} = AuthUser();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
 
-  const submitForm = () => {
-
+  const handleLogin = (event: any) => {
     // http.post('login',{email:email,password:password}).then((res)=>{
     //   console.log(res.data)
     // }) 
-   
+    event.preventDefault();
     try{
 
       if (!CheckPassword(password)) {
@@ -32,22 +31,19 @@ const Login = () => {
           password: password,
         })
           .then(async response => {
-            console.log(response.data)
+            //console.log(response)
             //  console.log(response.data.error)
             switch(response) {
               case 0:
   
-               //await  console.log(response)
+                console.log('Log In')
+                navigate('/dashboard');
                 break;
               case 1:
-               return alert('Contraseña Incorrecta');
+               return alert('Ingreso Algun Dato Incorrecto');
               
              break;
-              case 2:
 
-                return alert('El Usuario No Existe');
-                
-              break;
               }
           })
         }
@@ -121,7 +117,7 @@ const Login = () => {
               // type="submit"
               type="button"
               className="bg-primary text-black uppercase font-bold text-sm w-full py-3 px-4 rounded-lg"
-              onClick={submitForm}>
+              onClick={handleLogin}>
               Ingresar
             </button>
           </div>

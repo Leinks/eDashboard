@@ -1,6 +1,5 @@
 export const CheckPassword = (data: string) => {
-    console.log(data)
-
+    
         const isNonWhiteSpace = /^\S*$/;
         if (!isNonWhiteSpace.test(data)) {
             console.log('La Contraseña no puede tener espacios en Blanco.')

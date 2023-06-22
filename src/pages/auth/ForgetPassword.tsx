@@ -31,7 +31,7 @@ const ForgetPassword = () => {
           <span className="flex items-center gap-2">
             ¿Ya tienes cuenta?{" "}
             <Link
-              to="/login"
+              to="/"
               className="text-primary hover:text-gray-100 transition-colors"
             >
               Ingresa
