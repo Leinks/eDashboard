@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { UpperCase } from "../../components/UpperCase";
+import { useNavigate } from 'react-router-dom';
 import { RegisterUser } from "../../components/RegisterUser";
 // Icons
 import {
@@ -11,6 +12,7 @@ import {
   RiUserLine,
 } from "react-icons/ri";
 const Register = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -21,37 +23,41 @@ const Register = () => {
   const handleRegister = async (event: any) => {
     event.preventDefault();
     const FullName = UpperCase(name + ' ' + lastname)
+    if (password !== passwordConfirmation){
+      return alert('La Contraseña debe ser Igual')
+    }else{
 
-    try{
-        RegisterUser({
-          name:FullName,
-          email: email.toLocaleLowerCase(),
-          password: password,
-          //passwordConfirmation: passwordConfirmation
-        })
-          .then(async response => {
-            //console.log(response)
-            //console.log(response.data.error)
-            switch(response) {
-              case 0:
-  
-                console.log('Log In')
-                console.log(response)
-               // navigate('/dashboard');
-                break;
-              case 1:
-               return alert('Ingreso Algun Dato Incorrecto');
-              
-             break;
-
-              }
+      try{
+          RegisterUser({
+            name:FullName,
+            email: email.toLocaleLowerCase(),
+            password: password,
+            //passwordConfirmation: passwordConfirmation
           })
-        
-      }catch (e: any) {
-          //console.info(e)
-            //console.log(e.response)
-          //return alert(CheckPassword(password)!);
-        }
+            .then(async response => {
+              //console.log(response)
+              //console.log(response.data.error)
+              switch(response) {
+                case 0:
+    
+                  // console.log('Registered')
+                  // console.log(response)
+                  navigate('/dashboard');
+                  break;
+                case 1:
+                 return alert('Ingreso Algun Dato Incorrecto');
+                
+               break;
+  
+                }
+            })
+          
+        }catch (e: any) {
+            //console.info(e)
+              //console.log(e.response)
+            //return alert(CheckPassword(password)!);
+          }
+    }
     }
 
   

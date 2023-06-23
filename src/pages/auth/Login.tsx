@@ -36,12 +36,12 @@ const Login = () => {
             switch(response) {
               case 0:
   
-                console.log('Log In')
+                //console.log('Log In')
                 navigate('/dashboard');
                 break;
               case 1:
-               return alert('Ingreso Algun Dato Incorrecto');
-              
+               //return alert('Ingreso Algun Dato Incorrecto');
+               console.log(response)
              break;
 
               }
@@ -54,18 +54,6 @@ const Login = () => {
         }
     }
   
-  // const submitForm = async (event) => {
-  //   console.log(email,password)
-  //   event.preventDefault();
-  //   try {
-  //   await ApiManager.post('login',{email,password})
-  //   } catch (error) {
-      
-  //   }
-
-  // }
-
-
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
@@ -89,6 +77,7 @@ const Login = () => {
               placeholder="Correo electrónico"
               onChange={e=>setEmail(e.target.value)}
               id="email"
+              required
             />
           </div>
           <div className="relative mb-8">
@@ -96,9 +85,9 @@ const Login = () => {
             <input
               type={showPassword ? "text" : "password"}
               className="py-3 px-8 bg-secondary-900 w-full outline-none rounded-lg"
-              placeholder="Contraseña"
               onChange={e=>setPassword(e.target.value)}
               id="pwd"
+              required
             />
             {showPassword ? (
               <RiEyeOffLine
@@ -114,7 +103,7 @@ const Login = () => {
           </div>
           <div>
             <button
-              // type="submit"
+              //  type="submit"
               type="button"
               className="bg-primary text-black uppercase font-bold text-sm w-full py-3 px-4 rounded-lg"
               onClick={handleLogin}>

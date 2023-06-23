@@ -51,11 +51,10 @@ export const AuthUser = async (data: {email:string,password:string}) => {
     try {
         const result = await ApiManager( 'login',
         {
-            method: 'POST',
-            headers:{
-            "Content-type" : "application/json",
-            Accept: '*',
-            //credentials: 'same-origin'
+          method: 'POST',
+          headers:{
+          "Content-type" : "application/json",
+          Accept: '*',  
         
                 
         },
@@ -66,13 +65,13 @@ export const AuthUser = async (data: {email:string,password:string}) => {
           // sessionStorage.setItem('user', result.data.user)
           // setToken(result.data.access_token);
           // setUSer(result.data.user);
-          console.log(result.data.user)
+          //console.log(result.data.user)
         
           return 0;
         }
     } catch (e: any) {
           //console.info(e)
-          console.log(e.response.data.error)
+         // console.log(e.response.data.error)
         return 1;
       }
     };

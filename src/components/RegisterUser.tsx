@@ -20,7 +20,7 @@ export const RegisterUser = async (data: {name:string,email:string,password:stri
             Accept: '*',        
                 
         },
-            data: data,
+            data: BodyContent,
         });
         if(result){
 
@@ -29,8 +29,8 @@ export const RegisterUser = async (data: {name:string,email:string,password:stri
           return 0;
         }
     } catch (e: any) {
-          //console.info(e)
-          console.log(e.response.data.error)
+          console.info(e)
+          //console.log(e.response.data.error)
         return 1;
       }
     };
