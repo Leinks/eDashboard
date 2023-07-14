@@ -158,7 +158,7 @@ const Profile = () => {
           <div className="flex flex-col md:flex-row md:items-center gap-y-4 justify-between">
             <div>
               <h5 className="text-gray-100 text-xl mb-1">Correo electrónico</h5>
-              <p className="text-gray-500 text-sm">jorgetrejo@gmail.com</p>
+              <p className="text-gray-500 text-sm">engelberthtovar@gmail.com</p>
             </div>
             <div>
               <button className="w-full md:w-auto bg-secondary-900/50 py-3 px-4 rounded-lg hover:bg-secondary-900 hover:text-gray-100 transition-colors">
@@ -385,7 +385,7 @@ const Profile = () => {
             <p className="text-gray-500">
               For extra security, this requires you to confirm your email or
               phone number when you reset yousignr password.{" "}
-              <Link className="text-blue-500">Learn more</Link>
+              <Link className="text-blue-500" to={""}>Learn more</Link>
             </p>
           </div>
         </div>
