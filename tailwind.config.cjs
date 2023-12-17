@@ -6,6 +6,10 @@ module.exports = {
     extend: {
       colors: {
         primary: "#BDEB00",
+        submenu: {
+          100: "#769400",
+          900: "#387A31",
+        }, 
         secondary: {
           100: "#1E1F25",
           900: "#131517",

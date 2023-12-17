@@ -1,4 +1,4 @@
-import { ApiManager } from './ApiManager';
+import { ApiManager } from '../ApiManager/ApiManager';
 
 
 export const RegisterUser = async (data: {name:string,email:string,password:string}) => {

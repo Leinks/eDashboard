@@ -2,17 +2,12 @@ import axios from 'axios';
 
 
 const ApiManager = axios.create({
-    baseURL:"http://localhost:8000/api",
+    baseURL:"http://localhost:8080/",
     headers:{
         "Content-type" : "Authorization",
         // "Authorization" : `Bearer ${token}`
     }
 });
 
-// const TicketManager = axios.create({
-//   baseURL: 'http://164.92.87.191/api/',
-//   responseType: 'json',
-//   withCredentials: true,
-// });
 
 export {ApiManager};

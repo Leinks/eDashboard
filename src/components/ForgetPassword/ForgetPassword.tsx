@@ -1,6 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { MainLayout } from "../layouts/MainLayout";
+import { MainLayout } from "../../layouts/MainLayout";
 // Icons
 import { RiMailLine } from "react-icons/ri";
 export function CForgetPassword () {
@@ -40,7 +39,7 @@ export function CForgetPassword () {
           <span className="flex items-center gap-2">
             ¿No tienes cuenta?{" "}
             <Link
-              to="/registro"
+              to="/register"
               className="text-primary hover:text-gray-100 transition-colors"
             >
               Registrate

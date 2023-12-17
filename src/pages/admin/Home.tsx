@@ -1,19 +1,19 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import CardTicket from "../../components/CardTicket";
-import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+import * as RiIcons from 'react-icons/ri';
+import * as Routing from '../../routes/paths';
+import CardTicket from "../../components/CardTicket/CardTicket";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 
-const Home = () => {
+export function Home () {
   return (
     <div>
       <div className="flex items-center justify-between mb-10">
-        <h1 className="text-4xl text-white">Good morning, EtorDev!</h1>
+        <h1 className="text-4xl text-white">Good morning, EtovDev!</h1>
         <div className="flex items-center gap-2 text-3xl">
-          <RiArrowLeftSLine className="hover:cursor-pointer hover:text-white transition-colors" />
-          <RiArrowRightSLine className="hover:cursor-pointer hover:text-white transition-colors" />
+          <RiIcons.RiArrowLeftSLine className="hover:cursor-pointer hover:text-white transition-colors" />
+          <RiIcons.RiArrowRightSLine className="hover:cursor-pointer hover:text-white transition-colors" />
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -85,16 +85,16 @@ const Home = () => {
             >
               <MenuItem className="p-0 hover:bg-transparent">
                 <Link
-                  to="/perfil"
-                  className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
+                  to={Routing.PATH_PROFILE}
+                  className="rounded-lg transition-colors text-gray-600 hover:text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
                 >
                   Dashboard tickets
                 </Link>
               </MenuItem>
               <MenuItem className="p-0 hover:bg-transparent">
                 <Link
-                  to="/perfil"
-                  className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
+                  to={Routing.PATH_PROFILE}
+                  className="rounded-lg transition-colors  text-gray-600 hover:text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
                 >
                   Información
                 </Link>
@@ -137,16 +137,16 @@ const Home = () => {
             >
               <MenuItem className="p-0 hover:bg-transparent">
                 <Link
-                  to="/perfil"
-                  className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
+                  to={Routing.PATH_PROFILE}
+                  className="rounded-lg transition-colors text-gray-600 hover:text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
                 >
                   Dashboard tickets
                 </Link>
               </MenuItem>
               <MenuItem className="p-0 hover:bg-transparent">
                 <Link
-                  to="/perfil"
-                  className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
+                  to={Routing.PATH_PROFILE}
+                  className="rounded-lg transition-colors text-gray-600 hover:text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
                 >
                   Información
                 </Link>
@@ -189,16 +189,16 @@ const Home = () => {
             >
               <MenuItem className="p-0 hover:bg-transparent">
                 <Link
-                  to="/perfil"
-                  className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
+                  to={Routing.PATH_PROFILE}
+                  className="rounded-lg transition-colors text-gray-600 hover:text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
                 >
                   Dashboard tickets
                 </Link>
               </MenuItem>
               <MenuItem className="p-0 hover:bg-transparent">
                 <Link
-                  to="/perfil"
-                  className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
+                  to={Routing.PATH_PROFILE}
+                  className="rounded-lg transition-colors text-gray-600 hover:text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
                 >
                   Información
                 </Link>
@@ -211,4 +211,3 @@ const Home = () => {
   );
 };
 
-export default Home;

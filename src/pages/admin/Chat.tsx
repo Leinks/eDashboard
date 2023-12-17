@@ -1,7 +1,4 @@
-import React from "react";
-
-const Chat = () => {
+export function Chat () {
   return <div>Chat</div>;
 };
 
-export default Chat;

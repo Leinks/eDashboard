@@ -1,5 +1,4 @@
-import React from "react";
-import {CRegister} from "../../components/Register";
+import {CRegister} from "../../components/Register/Register";
 
 
  export function Register() {

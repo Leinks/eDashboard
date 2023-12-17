@@ -1,18 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import { UpperCase } from './UpperCase'
-import { RegisterUser } from "./RegisterUser";
-
+import { UpperCase } from '../UpperCase/UpperCase'
+import { MainLayout } from "../../layouts/MainLayout";
+import { RegisterUser } from "../RegisterUser/RegisterUser";
 // Icons
-import {
-  RiMailLine,
-  RiLockLine,
-  RiEyeLine,
-  RiEyeOffLine,
-  RiUserLine,
-} from "react-icons/ri";
-import { MainLayout } from "../layouts/MainLayout";
+import { RiMailLine, RiLockLine, RiEyeLine,RiEyeOffLine, RiUserLine} from "react-icons/ri";
+
 export function CRegister () {
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -106,6 +100,7 @@ export function CRegister () {
               value={email}
               className="py-3 pl-8 pr-4 bg-secondary-900 w-full outline-none rounded-lg"
               placeholder="Correo electrónico"
+              autoComplete="username"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -116,6 +111,7 @@ export function CRegister () {
               value={password}
               className="py-3 px-8 bg-secondary-900 w-full outline-none rounded-lg"
               placeholder="Contraseña"
+              autoComplete="new-password"
               onChange={(e) => setPassword(e.target.value)}
             />
             {showPassword ? (
@@ -137,6 +133,7 @@ export function CRegister () {
               value={passwordConfirmation}
               className="py-3 px-8 bg-secondary-900 w-full outline-none rounded-lg"
               placeholder="Confirmar contraseña"
+              autoComplete="new-password"
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
             {showPassword ? (

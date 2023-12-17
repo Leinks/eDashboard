@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 import {
   RiFilter2Fill,
@@ -14,7 +14,9 @@ import {
 } from "react-icons/ri";
 import { Tab, Disclosure, Transition } from "@headlessui/react";
 
-const Tickets = () => {
+export function Tickets () {
+  const name = sessionStorage.getItem('name')
+  const email = sessionStorage.getItem('email')
   return (
     <div>
       {/* Title */}

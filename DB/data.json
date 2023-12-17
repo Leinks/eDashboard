@@ -1,0 +1,53 @@
+[
+    {
+        "path": '/dashboard',
+        "name": 'Dashboard',
+        "icon": <RiDashboardFill className="text-primary" />,
+      },
+      {
+        "path": '/analitics',
+        "name": 'Analíticas',
+        "icon": "<RiPieChart2Fill className="text-primary" />",
+      },
+      {
+        "path": '/social-media',
+        "name": 'Redes sociales',
+        "icon": <RiEarthLine className="text-primary" />,
+  
+        children: [
+          {
+            "path": '/social-post',
+            "name": 'Post red social',
+            "icon": <RiBarChart2Line className="text-primary" />
+          },
+          {
+            "path": '/stadistics',
+            "name": 'Estadisticas',
+            "icon": <RiBarChart2Line className="text-primary" />
+          },
+          {
+            "path": '/profiles',
+            "name": 'Perfiles',
+            "icon": <RiPassValidLine className="text-primary" />
+          },
+          {
+            "path": '/clients',
+            "name": 'Clientes',
+            "icon": <RiTeamFill className="text-primary" />
+            
+          },
+        ],
+        
+      },
+  
+      {
+        "path": '/claendar',
+        name: 'Calendario',
+        "icon": <RiCalendarTodoLine className="text-primary" />
+      },
+      {
+        "path": '/tickets',
+        name: 'Tickets',
+        "icon": <RiMailSendFill className="text-primary" />
+      },
+]

@@ -1,6 +1,4 @@
-
-import React from "react";
-import { CForgetPassword } from "../../components/ForgetPassword";
+import { CForgetPassword } from "../../components/ForgetPassword/ForgetPassword";
 
 
 

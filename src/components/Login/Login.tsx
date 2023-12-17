@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { AuthUser } from "./AuthUser";
+import { useState } from "react";
+import { AuthUser } from "../AuthUser/AuthUser";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { CheckPassword } from "./CheckPassword";
-import { MainLayout } from "../layouts/MainLayout";
+import { CheckPassword } from "../CheckPassword/CheckPassword";
+import { MainLayout } from "../../layouts/MainLayout";
 // Icons
 import {
   RiUser3Line,
-  RiMailLine,
+  // RiMailLine,
   RiLockLine,
   RiEyeLine,
   RiEyeOffLine,
@@ -38,7 +38,7 @@ export function Clogin() {
               break;
             case 1:
               //return alert('Ingreso Algun Dato Incorrecto');
-              console.log(response);
+              // console.log(response);
               break;
           }
         });
@@ -71,6 +71,7 @@ export function Clogin() {
             placeholder="Correo electrónico"
             onChange={(e) => setEmail(e.target.value)}
             id="email"
+            autoComplete="username"
             required
           />
         </div>
@@ -81,6 +82,7 @@ export function Clogin() {
             className="py-3 px-8 bg-secondary-900 w-full outline-none rounded-lg"
             onChange={(e) => setPassword(e.target.value)}
             id="pwd"
+            autoComplete="current-password"
             required
           />
           {showPassword ? (
@@ -108,7 +110,7 @@ export function Clogin() {
       </form>
       <div className="flex flex-col items-center gap-4">
         <Link
-          to="/olvide-password"
+          to="/forget-password"
           className="hover:text-primary transition-colors"
         >
           ¿Olvidaste tu contraseña?
@@ -116,7 +118,7 @@ export function Clogin() {
         <span className="flex items-center gap-2">
           ¿No tienes cuenta?{" "}
           <Link
-            to="/registro"
+            to="/register"
             className="text-primary hover:text-gray-100 transition-colors"
           >
             Registrate

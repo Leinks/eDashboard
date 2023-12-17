@@ -1,11 +1,17 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import * as Routing from '../../routes/paths';
 import { RiTicketLine, RiMore2Fill, RiAddLine } from "react-icons/ri";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 
-const CardTicket = (props) => {
+interface Props {
+  text: string
+  ticket: string
+  totalTickets: string
+}
+
+const CardTicket = (props: Props) => {
   const { ticket, totalTickets, text } = props;
 
   let status = "";
@@ -53,16 +59,16 @@ const CardTicket = (props) => {
           >
             <MenuItem className="p-0 hover:bg-transparent">
               <Link
-                to="/perfil"
-                className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
+                to={Routing.PATH_PROFILE}
+                className="rounded-lg transition-colors text-gray-600 hover:text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
               >
                 Dashboard tickets
               </Link>
             </MenuItem>
             <MenuItem className="p-0 hover:bg-transparent">
               <Link
-                to="/perfil"
-                className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
+                to={Routing.PATH_PROFILE}
+                className="rounded-lg transition-colors text-gray-600 hover:text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 p-2 flex-1"
               >
                 Información
               </Link>

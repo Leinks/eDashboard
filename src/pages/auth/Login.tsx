@@ -1,6 +1,4 @@
-
-import React from "react";
-import {Clogin} from "../../components/Login";
+import {Clogin} from "../../components/Login/Login";
 
 
  export function Login() {
