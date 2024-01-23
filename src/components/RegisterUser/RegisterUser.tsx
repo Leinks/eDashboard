@@ -1,4 +1,5 @@
-import { ApiManager } from '../ApiManager/ApiManager';
+import { AuthManager } from "../ApiManager/ApiManager";
+
 
 
 export const RegisterUser = async (data: {name:string,email:string,password:string}) => {
@@ -12,7 +13,7 @@ export const RegisterUser = async (data: {name:string,email:string,password:stri
     //console.log(data)
   
     try {
-        const result = await ApiManager( 'register',
+        const result = await AuthManager( 'register',
         {
             method: 'POST',
             headers:{

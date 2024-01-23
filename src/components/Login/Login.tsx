@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { CheckPassword } from "../CheckPassword/CheckPassword";
 import { MainLayout } from "../../layouts/MainLayout";
-import { Alert } from "../Alerts/Alert";
+import toast, { Toaster } from 'react-hot-toast';
 // Icons
 import {
   RiUser3Line,
@@ -36,10 +36,23 @@ export function Clogin() {
             case 0:
               //console.log('Log In')
               // return <Alert variant="danger"> Ingreso Algun Dato Incorrecto</Alert>;
-              navigate("/dashboard");
+              toast.success(
+                ' Bienvenido !',
+                {
+                  duration: 900,
+                  style: {
+                    paddingLeft:'22px',
+                    paddingRight:'22px'
+                  }
+                }
+              )
+              setTimeout(()=> {
+                navigate("/dashboard");
+               }, 2000);
+             // navigate("/dashboard");
               break;
             case 1:
-              return <Alert variant="danger">Ingreso Algun Dato Incorrecto</Alert>;
+              return toast.error('Ingreso Algun Dato Incorrecto')
               // return alert('Ingreso Algun Dato Incorrecto');
               // console.log(response);
               break;
@@ -47,15 +60,20 @@ export function Clogin() {
         });
       }
     } catch (e: any) {
-      //console.info(e)
+      toast.error(e);
+      console.info(e)
       //console.log(e.response)
-      return <Alert variant="danger">{CheckPassword(password)!}</Alert>;
+      //return toast(e)
       //return alert(CheckPassword(password)!);
     }
   };
 
   return (
     <MainLayout>
+      <Toaster
+          position="top-center"
+          reverseOrder={false}
+      />
       <h1 className="text-3xl text-center uppercase font-bold tracking-[5px] text-white mb-8">
         Iniciar <span className="text-primary">sesión</span>
       </h1>
@@ -103,8 +121,8 @@ export function Clogin() {
         </div>
         <div>
           <button
-            //  type="submit"
-            type="button"
+            //type="button"
+            type="submit"
             className="bg-primary text-black uppercase font-bold text-sm w-full py-3 px-4 rounded-lg"
             onClick={handleLogin}
           >

@@ -17,17 +17,17 @@ export  function Alert({ variant = "info", children }: AlertProps){
     }
 
     return (
-        <div className={classVariants[variant] +	'flex-inline gap-2 items-center'}>
-            <span className="text-2xl">
+        <div className={classVariants[variant] + 'flex-inline gap-2 items-center'}>
+            <span className="flex justify-items-center text-2xl">
                 {	variant === 'success' ?	(
                 	<RiCheckboxCircleLine />
                 )	:	variant ===	'warning'	?	(
-									<RiErrorWarningLine	/>
-								)	:	variant ===	'danger'	?	(
-									<RiCloseCircleLine	/>
-								) :	(
-									<RiInformationFill	/>
-								)}
+																	<RiErrorWarningLine	/>
+																)	:	variant ===	'danger'	?	(
+																	<RiCloseCircleLine	/>
+																) :	(
+																	<RiInformationFill	/>
+																)}
             </span>
             {children}
         </div>
