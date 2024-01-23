@@ -7,7 +7,8 @@ interface AppLayoutProps {
   children: React.ReactNode;
 }
 
-const LayoutAdmin = ({ children }: AppLayoutProps) => {
+export default function LayoutAdmin ({ children }: AppLayoutProps) {
+ 
   return (
     <div className="min-h-screen grid grid-cols-1 xl:grid-cols-6">
       <Sidebar />
@@ -21,4 +22,4 @@ const LayoutAdmin = ({ children }: AppLayoutProps) => {
   );
 };
 
-export default LayoutAdmin;
+// export default LayoutAdmin;
