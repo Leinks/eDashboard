@@ -57,7 +57,7 @@ export const routes: RouteProps[] = [
 
 	},
 	{
-		layout: lazy(async ()=> await import('../layouts/LayoutAdmin.tsx')),
+		layout: lazy(async ()=> await import('../layouts/LayoutAdmin')),
 		guard: lazy(async ()=> await import('../guards/AuthGuard')),
 		children: [
 

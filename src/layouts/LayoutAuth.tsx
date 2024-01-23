@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-const LayoutAuth = () => {
+export default function LayoutAuth () {
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <Outlet />
@@ -8,4 +8,4 @@ const LayoutAuth = () => {
   );
 };
 
-export default LayoutAuth;
+

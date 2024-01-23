@@ -4,9 +4,57 @@ import {  Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 // import "@szhsin/react-menu/dist/transitions/slide.css";
 import { Link } from "react-router-dom";
 import * as Routing from '../../routes/paths';
+// import { useEffect, useState } from 'react';
+// import { useInterval } from 'react-use';
 
 export function Header () {
+  // const navigate = useNavigate();
+  // const [loggedIn, setLoggedIn] = useState(true);
+  // const UserSession = new Date().getTime()
+  // const Now = new Date().toLocaleTimeString()
+  // const ExpireDate = new Date().getTime() +2
 
+  // const onUpdateActivity = () => {
+  //   if (loggedIn) {
+  //     const session = Date.now() + 5000;
+  //     localStorage.setItem("exTime", session.toString());
+  //   }
+  // }
+
+  // const onCheckInActivity = () => {
+  //   const exTime = localStorage.getItem('exTime');
+  //   if (Number(exTime) <= Date.now())
+  //     setLoggedIn(false)
+  // }
+  
+  
+  // useEffect(() => {
+  //   setInterval(() => { onCheckInActivity(); }, 1000)
+
+  //   onCheckInActivity()
+  //   onUpdateActivity()
+  //   console.log(loggedIn)
+  //   // return () => {
+  //     //   clearInterval(interval);
+      
+  //     // }
+  //     if(loggedIn === false)
+  //     {
+  //       navigate("/");
+  //       localStorage.removeItem('exTime')
+      
+  //     }
+  // },)
+  
+ // setInterval(UserSession, 2400);
+ 
+//  console.log('ExpireDate',ExpireDate)
+// if(UserSession > UserSession + 2)
+// {
+//    console.log('UserSession',UserSession)
+
+//   }
+  
   const name = sessionStorage.getItem('name')
   const email = sessionStorage.getItem('email')
 
@@ -18,7 +66,7 @@ export function Header () {
             <MenuButton className="relative hover:bg-secondary-100 p-2 rounded-lg transition-colors">
               <RiIcons.RiNotification3Line />
               <span className="absolute -top-0.5 right-0 bg-primary py-0.5 px-[5px] box-content text-black rounded-full text-[8px] font-bold">
-                2
+                5
               </span>
             </MenuButton>
           }
@@ -140,7 +188,7 @@ export function Header () {
           <MenuItem className="p-0 hover:bg-transparent">
             <Link
             to="/"
-            onClick={() => sessionStorage.removeItem('access_token')}
+            onClick={() => sessionStorage.removeItem('accessToken')}
               className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
             >
               <RiIcons.RiLogoutCircleRLine /> Cerrar sesión

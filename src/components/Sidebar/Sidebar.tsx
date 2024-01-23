@@ -12,7 +12,7 @@ export function Sidebar () {
   // const [showSubmenu, setShowSubmenu] = useState(false);
 
   const handleSignOut = () => {
-    sessionStorage.removeItem('access_token')
+    sessionStorage.removeItem('accessToken')
     navigate('/')
 
   }

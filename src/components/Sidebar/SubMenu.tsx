@@ -7,10 +7,6 @@ type SidebarLinkProps = {
     item: SidebarItem;
 };
 
-
-
-
-
 const SubMenu: FC<SidebarLinkProps> = ({ item }) => {
     const location = useLocation();
     const [children, setChildren] = useState(false);
@@ -18,8 +14,6 @@ const SubMenu: FC<SidebarLinkProps> = ({ item }) => {
     const SideBarLink =`flex items-center gap-4 py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors ${location.pathname === item.path ? "bg-secondary-900 transition-colors font-bold" : ""}`
     return (
         <>
-
-
             <Link className={SideBarLink} to={item.path} onClick={showSubmenu}>
                 <div>
                     <span className="flex items-center gap-4">

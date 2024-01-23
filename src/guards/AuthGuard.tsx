@@ -6,7 +6,7 @@ interface AuthGuardProps{
 }
 
 export default function AuthGuard({children}: AuthGuardProps) {
-    const isAuthenticated = sessionStorage.getItem('access_token')
+    const isAuthenticated = sessionStorage.getItem('accessToken')
     if(!isAuthenticated) {
       return <Navigate to='/'/>
     }else{

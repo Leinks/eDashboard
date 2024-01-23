@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
 import * as RiIcons from 'react-icons/ri';
 import * as Routing from '../../routes/paths';
-import CardTicket from "../../components/CardTicket/CardTicket";
+import CardTicket from "../../components/Cards/CardTicket";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
+import { Alert } from "../../components/Alerts/Alert";
 
 export function Home () {
+  // const token = sessionStorage.getItem('accessToken')
+  //console.log('Token',token)
   return (
     <div>
+       <Alert variant="danger"> Ingreso Algun Dato Incorrecto</Alert>;
       <div className="flex items-center justify-between mb-10">
         <h1 className="text-4xl text-white">Good morning, EtovDev!</h1>
         <div className="flex items-center gap-2 text-3xl">
@@ -79,7 +83,7 @@ export function Home () {
               }
               align="end"
               arrow
-              arrowClassName="bg-secondary-100"
+             // arrowClassName="bg-secondary-100"
               transition
               menuClassName="bg-secondary-100 p-4"
             >
@@ -131,7 +135,7 @@ export function Home () {
               }
               align="end"
               arrow
-              arrowClassName="bg-secondary-100"
+              //arrowClassName="bg-secondary-100"
               transition
               menuClassName="bg-secondary-100 p-4"
             >
@@ -183,7 +187,7 @@ export function Home () {
               }
               align="end"
               arrow
-              arrowClassName="bg-secondary-100"
+            //  arrowClassName="bg-secondary-100"
               transition
               menuClassName="bg-secondary-100 p-4"
             >

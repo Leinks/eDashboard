@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { AuthUser } from "../AuthUser/AuthUser";
+import { AuthUser } from "../FetchApi/AuthUser";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { CheckPassword } from "../CheckPassword/CheckPassword";
 import { MainLayout } from "../../layouts/MainLayout";
+import { Alert } from "../Alerts/Alert";
 // Icons
 import {
   RiUser3Line,
   // RiMailLine,
   RiLockLine,
   RiEyeLine,
-  RiEyeOffLine,
+  RiEyeOffLine,  
 } from "react-icons/ri";
 export function Clogin() {
   const navigate = useNavigate();
@@ -34,10 +35,12 @@ export function Clogin() {
           switch (response) {
             case 0:
               //console.log('Log In')
+              // return <Alert variant="danger"> Ingreso Algun Dato Incorrecto</Alert>;
               navigate("/dashboard");
               break;
             case 1:
-              //return alert('Ingreso Algun Dato Incorrecto');
+              return <Alert variant="danger">Ingreso Algun Dato Incorrecto</Alert>;
+              // return alert('Ingreso Algun Dato Incorrecto');
               // console.log(response);
               break;
           }
@@ -46,7 +49,8 @@ export function Clogin() {
     } catch (e: any) {
       //console.info(e)
       //console.log(e.response)
-      return alert(CheckPassword(password)!);
+      return <Alert variant="danger">{CheckPassword(password)!}</Alert>;
+      //return alert(CheckPassword(password)!);
     }
   };
 

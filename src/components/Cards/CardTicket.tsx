@@ -53,7 +53,7 @@ const CardTicket = (props: Props) => {
             }
             align="end"
             arrow
-            arrowClassName="bg-secondary-100"
+           // arrowClassName="bg-secondary-100"
             transition
             menuClassName="bg-secondary-100 p-4"
           >
@@ -84,7 +84,7 @@ const CardTicket = (props: Props) => {
       <hr className="border border-dashed border-gray-500/50 my-4" />
       <div>
         <Link
-          to="/"
+          to="/ticket"
           className="flex items-center gap-2 text-white hover:underline"
         >
           <RiAddLine /> Agregar nuevo ticket
