@@ -13,6 +13,7 @@ import {
   RiEyeLine,
   RiEyeOffLine,  
 } from "react-icons/ri";
+
 export function Clogin() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -29,9 +30,6 @@ export function Clogin() {
   },[isAuthenticated])
 
   const handleLogin = (event: any) => {
-    // http.post('login',{email:email,password:password}).then((res)=>{
-    //   console.log(res.data)
-    // })
     event.preventDefault();
     try {
       if (!CheckPassword(password)) {
@@ -40,11 +38,10 @@ export function Clogin() {
           password: password,
         }).then(async (response) => {
           console.log(response)
-          //  console.log(response.data.error)
+
           switch (response) {
             case 0:
-              //console.log('Log In')
-              // return <Alert variant="danger"> Ingreso Algun Dato Incorrecto</Alert>;
+
               toast.success(
                 ' Bienvenido !',
                 {
@@ -59,22 +56,14 @@ export function Clogin() {
               setTimeout(()=> {
                 navigate("/dashboard");
                }, 1000);
-             // navigate("/dashboard");
               break;
             case 1:
               return toast.error('Ingreso Algun Dato Incorrecto')
-              // return alert('Ingreso Algun Dato Incorrecto');
-              // console.log(response);
-              break;
           }
         });
       }
     } catch (e: any) {
-      toast.error(e);
       console.info(e)
-      //console.log(e.response)
-      //return toast(e)
-      //return alert(CheckPassword(password)!);
     }
   };
 

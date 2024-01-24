@@ -36,20 +36,10 @@ export async function AuthUser(data: {email:string,password:string}){
 
           // console.log('Data',response.data.accessToken)
           // console.log(response.status)
-          // console.log(response.data)
-          
-            
-          // const Objet = {
-          //   token: Token,
-          //   success: 0,
-          // };
-          const isAuthenticated = localStorage.getItem('Copilot')
+          // console.log(response.data)        
           console.log('Success',response.data)
          return 0;
         }
-        // const Objet = {
-        //   success: 1,
-        // };
         console.log('Fail',response.data)
        return 1;
     } catch (e: any) {
