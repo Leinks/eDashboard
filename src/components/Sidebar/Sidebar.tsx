@@ -12,9 +12,8 @@ export function Sidebar () {
   // const [showSubmenu, setShowSubmenu] = useState(false);
 
   const handleSignOut = () => {
-    sessionStorage.removeItem('accessToken')
+    localStorage.removeItem('Copilot')
     navigate('/')
-
   }
  
   return (

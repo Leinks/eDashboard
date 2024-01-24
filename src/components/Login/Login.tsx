@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AuthUser } from "../FetchApi/AuthUser";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,15 @@ export function Clogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const isAuthenticated = localStorage.getItem('Copilot')
+  
+
+  useEffect(()=>{
+    if (isAuthenticated)
+    {
+      navigate("/dashboard");
+    }
+  },[isAuthenticated])
 
   const handleLogin = (event: any) => {
     // http.post('login',{email:email,password:password}).then((res)=>{
@@ -30,7 +39,7 @@ export function Clogin() {
           email: email.toLocaleLowerCase(),
           password: password,
         }).then(async (response) => {
-          //console.log(response)
+          console.log(response)
           //  console.log(response.data.error)
           switch (response) {
             case 0:
@@ -48,7 +57,7 @@ export function Clogin() {
               )
               setTimeout(()=> {
                 navigate("/dashboard");
-               }, 2000);
+               }, 1000);
              // navigate("/dashboard");
               break;
             case 1:
