@@ -22,8 +22,8 @@ export function Company() {
       const FindCompanys = async () => {
         try {
         await GetCompany().then((response) =>{
-            setCompanys(response!.data.data)
-            setData(response!.data.data)
+            setCompanys(response?.data.data)
+            setData(response?.data.data)
             console.log('Companys',Companys)
           })
         } catch (error: any) {
@@ -33,7 +33,7 @@ export function Company() {
 
       FindCompanys()
     }
-  },[])
+  },[Companys])
   return (
     <div>
     {/* Title */}

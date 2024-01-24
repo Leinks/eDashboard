@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import * as RiIcons from 'react-icons/ri';
+import * as Routing from '../../routes/paths';
+// import toast, { Toaster } from 'react-hot-toast';
 import {  Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 // import "@szhsin/react-menu/dist/index.css";
 // import "@szhsin/react-menu/dist/transitions/slide.css";
-import { Link } from "react-router-dom";
-import * as Routing from '../../routes/paths';
 // import { useEffect, useState } from 'react';
 // import { useInterval } from 'react-use';
 
@@ -57,9 +58,20 @@ export function Header () {
   
   const name = sessionStorage.getItem('name')
   const email = sessionStorage.getItem('email')
+  // toast.success(
+  //   ' Bienvenido !',
+  //   {
+  //     //duration: 900,
+  //     style: {
+  //       paddingLeft:'22px',
+  //       paddingRight:'22px'
+  //     }
+  //   }
+  // )
 
   return (
     <header className="h-[7vh] md:h-[10vh] border-b border-secondary-100 p-8 flex items-center justify-end">
+      {/* <Toaster /> */}
       <nav className="flex items-center gap-2">
         <Menu
           menuButton={

@@ -48,10 +48,11 @@ export function Clogin() {
               toast.success(
                 ' Bienvenido !',
                 {
-                  duration: 900,
+                  duration: 1000,
+                  position: "bottom-right",
                   style: {
                     paddingLeft:'22px',
-                    paddingRight:'22px'
+                    paddingRight:'22px',
                   }
                 }
               )
@@ -81,7 +82,7 @@ export function Clogin() {
     <MainLayout>
       <Toaster
           position="top-center"
-          reverseOrder={false}
+          reverseOrder={true}
       />
       <h1 className="text-3xl text-center uppercase font-bold tracking-[5px] text-white mb-8">
         Iniciar <span className="text-primary">sesión</span>

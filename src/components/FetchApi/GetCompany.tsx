@@ -1,17 +1,21 @@
-import { GetManager } from '../ApiManager/ApiManager';
-// import React from "react";
+import { GetsManager } from '../ApiManager/ApiManager';
+import { DecryptData } from '../../utils/DecryptData';
+
+
 
 export async function GetCompany () {
-   // const [Company, setCompany] = React.useState(null);
-    
+    const token = DecryptData(localStorage.getItem('Copilot')!) 
+ 
    // console.log('token',token)
     try {
-        const response = await GetManager( 'company/',
+        const response = await GetsManager( 'company/',
         {
           method: 'GET',
           headers:{
-          "Content-type" : "application/json",
+         // "Content-type" : "application/json",
          // "Authorization" : `Bearer ${token}`,
+         "Content-type" : "Authorization",
+         "Authorization" : `Bearer ${token}`,
           Accept: '*',          
         }
     // })
