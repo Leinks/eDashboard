@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { RiArrowRightLine,  RiFilter2Fill } from "react-icons/ri";
+import { RiArrowRightLine,  RiBuilding4Line,  RiFilter2Fill, RiPassPendingLine } from "react-icons/ri";
 import { CardCompany } from "../../components/Cards/CardCompany";
 import { GetCompany } from "../../components/FetchApi/GetCompany";
 import { Tab,} from "@headlessui/react";
@@ -10,10 +10,19 @@ import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import { useEffect, useState } from "react";
 import moment from "moment";
+import { Modal } from "../../components/Modal/Modal";
+import { UpperCase } from "../../components/UpperCase/UpperCase";
 
 export function Company() {
-  const [Companys, setCompanys] = useState<any[]>([])
-  const [Data, setData] = useState(null)
+	const [name, setName] = useState("");
+	const [document, setDocument] = useState("");
+	const [phone, setPhone] = useState("");
+	const [email, setEmail] = useState("");
+	const [logo, setLogo] = useState("");
+	const [description, setDescription] = useState("");
+	const [Data, setData] = useState(null)
+	const [open, setOpen] = useState<boolean>(false)
+	const [Companys, setCompanys] = useState<any[]>([])
   // const Company = GetCompany()
   //   console.log('Company',Company)
   useEffect(()=>{
@@ -34,6 +43,12 @@ export function Company() {
       FindCompanys()
     }
   },[Companys])
+
+
+		const handleRegister = async (event: any) => {
+			event.preventDefault();
+			const FullName = UpperCase(name)
+		}
   return (
     <div>
     {/* Title */}
@@ -52,9 +67,83 @@ export function Company() {
           <button className="bg-secondary-100/50 hover:bg-secondary-100 flex items-center gap-2 py-2 px-4 rounded-lg hover:text-primary transition-colors">
             <RiFilter2Fill /> Filter
           </button>
-          <button className="bg-primary/90 text-black hover:bg-primary flex items-center gap-2 py-2 px-4 rounded-lg transition-colors">
+          <button className="bg-primary/90 text-black hover:bg-primary flex items-center gap-2 py-2 px-4 rounded-lg transition-colors"
+            onClick={() => setOpen(true)}>
             Create
           </button>
+          <Modal open={open} onClose={() =>	setOpen(false)}>
+										<form className="mb-8" onSubmit={handleRegister}>
+
+												<h1 className="bg-grey-200 text-3xl text-center uppercase font-bold tracking-[5px] text-white mb-8">
+															Crear <span className="text-primary">cuenta</span>
+												</h1>
+												<div className="relative mb-4">
+														<RiBuilding4Line className="absolute top-1/2 -translate-y-1/2 left-2 text-primary" />
+														<input
+																type="text"
+																value={name}
+																className="py-3 pl-8 pr-4 bg-secondary-900 w-full outline-none rounded-lg"
+																placeholder="Nombre"
+																onChange={(e) => setName(e.target.value)}
+														/>
+												</div>
+												<div className="relative mb-4">
+													<select className="py-3 pl-10 bg-secondary-900 w-[20%] outline-none rounded-l-lg">
+															<option value="J-">J- </option>
+															<option value="V-">V-</option>
+															<option value="E-">E-</option>
+													</select>
+													<RiPassPendingLine  className="absolute top-1/2 -translate-y-1/2 left-2 text-primary" />
+														<input
+																type="text"
+																value={document}
+																className="py-3 pl-8 pr-4 bg-secondary-900 w-[80%] outline-none rounded-r-lg rounded-l-xs"
+																placeholder="Registro de Información Fiscal (RIF)"
+																onChange={(e) => setDocument(e.target.value)}
+														/>
+												</div>
+												<div className="relative mb-4">
+														<RiBuilding4Line className="absolute top-1/2 -translate-y-1/2 left-2 text-primary" />
+														<input
+																type="text"
+																value={phone}
+																className="py-3 pl-8 pr-4 bg-secondary-900 w-full outline-none rounded-lg"
+																placeholder="Nombre"
+																onChange={(e) => setPhone(e.target.value)}
+														/>
+												</div>
+												<div className="relative mb-4">
+														<RiBuilding4Line className="absolute top-1/2 -translate-y-1/2 left-2 text-primary" />
+														<input
+																type="text"
+																value={email}
+																className="py-3 pl-8 pr-4 bg-secondary-900 w-full outline-none rounded-lg"
+																placeholder="Nombre"
+																onChange={(e) => setEmail(e.target.value)}
+														/>
+												</div>
+												<div className="relative mb-4">
+														<RiBuilding4Line className="absolute top-1/2 -translate-y-1/2 left-2 text-primary" />
+														<input
+																type="text"
+																value={logo}
+																className="py-3 pl-8 pr-4 bg-secondary-900 w-full outline-none rounded-lg"
+																placeholder="Nombre"
+																onChange={(e) => setLogo(e.target.value)}
+														/>
+												</div>
+												<div className="relative mb-4">
+														<RiBuilding4Line className="absolute top-1/2 -translate-y-1/2 left-2 text-primary" />
+														<input
+																type="text"
+																value={description}
+																className="py-3 pl-8 pr-4 bg-secondary-900 w-full outline-none rounded-lg"
+																placeholder="Nombre"
+																onChange={(e) => setDescription(e.target.value)}
+														/>
+												</div>
+											</form>
+          </Modal>
         </div>
       </div>
       {/* Cards*/}

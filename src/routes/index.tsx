@@ -1,6 +1,7 @@
 import { Route, Outlet } from "react-router-dom"
 import * as Routing from "./paths.tsx"
 import { lazy, Fragment, LazyExoticComponent, Suspense } from "react"
+import { RiShutDownLine } from "react-icons/ri"
 
 
 
@@ -22,7 +23,7 @@ export function renderRoutes (routes: RouteProps[]) {
 					key={index}
 					path = {route.path}
 					element = {
-						<Suspense fallback={<h1>Loading ...</h1>}>
+						<Suspense fallback={<RiShutDownLine  />}>
 							<Guard>
 								<Layout>{route.children ? <Outlet /> : <Component />}</Layout>
 							</Guard>

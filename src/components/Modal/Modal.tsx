@@ -1,34 +1,35 @@
 import React from "react";
+import { RiCloseFill } from "react-icons/ri";
 
 type propTypes = {
   open: boolean;
   onClose: () => void;
-  children: React.ReactNode;
+  children: React.ReactNode
 };
-export function Modal( {open}:propTypes, {onClose}:propTypes, {children}:propTypes ) {
+export const Modal: React.FC<propTypes> = ({open, onClose, children}) =>{
   return (
+    <>
     <div
       className={`fixed inset-0 flex justify-center items-center 
-    transition-colors ${open ? "visible bg-black/20" : "invisible"}
+    transition-colors p-6 ${open ? "visible bg-black/65 " : "invisible"}
     `}
       onClick={onClose}
     >
       <div
-        className={`bg-white rounded-lg shadow p-6
+        className={`py-3 px-6 bg-secondary-100 w-full outline-none rounded-lg
         transition-all max-w-md 
         ${open ? "scale-100 opacity-100" : "scale-110 opacitiy-0"}`}
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          className="absolute top-2 right-2 py-1 px-2 
-            border border-neutral-200 rounded-md text-gray-400
-            bg-white hover:bg-gray-50 hover:text-gray-600"
+          className="absolute top-2 right-2 py-1 px-2 rounded-full text-white"
           onClick={onClose}
         >
-          X
+         <RiCloseFill  />
         </button>
         {children}
       </div>
     </div>
+    </>
   );
 };

@@ -29,7 +29,7 @@ export async function AuthUser(data: {email:string,password:string}){
           sessionStorage.setItem('name' , response.data.name)
           sessionStorage.setItem('email', response.data.email)
           
-          localStorage.setItem('Copilot',EncryptData(response.data.accessToken) || "[]")
+          localStorage.setItem('Copilot', EncryptData(response.data.accessToken) || "[]")
           // localStorage.setItem('Copilot',response.data.accessToken)
           // localStorage.setItem('name', response.data.name)
           // localStorage.setItem('email', response.data.email)
